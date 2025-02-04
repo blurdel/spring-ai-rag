@@ -20,6 +20,7 @@ public class VectorStoreConfig {
     @Bean
     public SimpleVectorStore simpleVectorStore(EmbeddingModel embeddingModel, VectorStoreProperties vsProps) {
         SimpleVectorStore store = SimpleVectorStore.builder(embeddingModel).build();
+
         File vectorStoreFile = new File(vsProps.getVectorStorePath());
 
         if (vectorStoreFile.exists()) {
@@ -40,7 +41,6 @@ public class VectorStoreConfig {
             store.save(vectorStoreFile);
         }
 
-        // TODO: add data
         return store;
     }
 
